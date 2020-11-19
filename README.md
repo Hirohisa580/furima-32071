@@ -34,7 +34,7 @@
 |user|references|null: false, foreign_key: true|
 
 ### Association
-- belongs_to :user_item
+- has_one :user_item
 - belongs_to :user, through: :user_items, dependent: :destroy
 
 
