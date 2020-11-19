@@ -10,7 +10,6 @@
 | first_name (string not_nul)              |
 | last_name (string not_null)              |
 | birthday (date not_null) date_select使用  |
-| |
 |                                          |
 
 ### Association
@@ -25,7 +24,7 @@
 | explanation (text not_null)         |
 | category (integer not_null) enum使用 | 
 | status (integer not_null) enum使用   |
-| burden (integer not_null) enum使用   |
+| shipping (integer not_null) enum使用 |
 | area (integer not_null) enum使用     |
 | days (integer not_null) enum使用     |
 | image (ActiveStorageで実装)          |
@@ -51,4 +50,3 @@
 
 ### Association
 * belongs_to product
-
