@@ -1,24 +1,52 @@
-# README
+# フリマER図
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## users
 
-Things you may want to cover:
+| ---------------------------------------- |
+| email (string not_null)                  |
+| password (string not_null)               |
+| nickname (string not_null)               |
+| first_name (string not_nul)              |
+| last_name (string not_null)              |
+| birthday (date not_null) date_select使用  |
+| ---------------------------------------- |
 
-* Ruby version
+### Association
+* has_many products
 
-* System dependencies
 
-* Configuration
+## products
 
-* Database creation
+| ----------------------------------- |
+| name (string not_null)              |
+| price (string not_null              |
+| explanation (text not_null)         |
+| category (integer not_null) enum使用 | 
+| status (integer not_null) enum使用   |
+| burden (integer not_null) enum使用   |
+| area (integer not_null) enum使用     |
+| days (integer not_null) enum使用     |
+| image (ActiveStorageで実装)          |
+| user (references型)                  | 
+| ----------------------------------- |
 
-* Database initialization
+### Association
+* belongs_to user
+* belongs_to delivery
 
-* How to run the test suite
 
-* Services (job queues, cache servers, search engines, etc.)
+## deliveries
 
-* Deployment instructions
+| ------------------------------- |
+| postal_code (integer not_null)  |
+| prefectures (integer not_null)  |
+| municipality (string not_null)  |
+| address (integer not_null)      |
+| building_name (string)          |
+| phone_number (integer not_null) | 
+| product (references型)           |
+| ------------------------------- |
 
-* ...
+### Association
+* belongs_to product
+
