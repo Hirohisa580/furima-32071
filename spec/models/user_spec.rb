@@ -19,10 +19,18 @@ require 'rails_helper'
         expect(@user.errors.full_messages).to include("Nickname can't be blank")
       end
 
+
+
       it "emailが空だと登録できない" do
         @user.email = nil
         @user.valid?
         expect(@user.errors.full_messages).to include("Email can't be blank")
+      end
+
+      it "emailに@が入っていないと登録できない" do
+        @user.email = "aaagmail.com"
+        @user.valid?
+        expect(@user.errors.full_messages).to include("Email is invalid")
       end
 
       it "emailが重複していると登録できない" do
@@ -32,6 +40,8 @@ require 'rails_helper'
         another_user.valid?
         expect(another_user.errors.full_messages).to include("Email has already been taken")
       end
+
+
 
       it "passwordが空だと登録できない" do
         @user.password = nil
@@ -45,11 +55,20 @@ require 'rails_helper'
         expect(@user.errors.full_messages).to include("Password confirmation doesn't match Password")
       end
 
-      it "passwordが5文字以下だと登録できない" do
+      it "passwordが半角英数字混合でないと登録できない" do
+        @user.password = "123456"
+        @user.password_confirmation = "123456"
+        @user.valid?
+        expect(@user.errors.full_messages).to include("Password is invalid")
+      end
+
+      it "passwordが半角英数字混合だが、5文字以下だと登録できない" do
         @user.password = "12345"
         @user.valid?
         expect(@user.errors.full_messages).to include("Password is too short (minimum is 6 characters)")
       end
+
+
 
       it "first_nameが空だと登録できない" do
         @user.first_name = nil
@@ -57,11 +76,25 @@ require 'rails_helper'
         expect(@user.errors.full_messages).to include("First name can't be blank")
       end
 
+      it "first_nameが全角かな以外の入力だと登録できない" do
+        @user.first_name = "hiroki"
+        @user.valid?
+        expect(@user.errors.full_messages).to include("First name is invalid")
+      end
+
       it "last_nameが空だと登録できない" do
-        @user.last_name = nil
+        @user.last_name = ""
         @user.valid?
         expect(@user.errors.full_messages).to include("Last name can't be blank")
       end
+
+      it "last_nameが全角かな以外の入力だと登録できない" do
+        @user.last_name = "tanaka"
+        @user.valid?
+        expect(@user.errors.full_messages).to include("Last name is invalid")
+      end
+
+
 
       it "first_name_rubyが空だと登録できない" do
         @user.first_name_ruby = nil
@@ -69,11 +102,25 @@ require 'rails_helper'
         expect(@user.errors.full_messages).to include("First name ruby can't be blank")
       end
 
+      it "first_name_rubyがカタカナ以外の入力だと登録できない" do
+        @user.first_name_ruby = "ひろき"
+        @user.valid?
+        expect(@user.errors.full_messages).to include("First name ruby is invalid")
+      end
+
       it "last_name_rubyが空だと登録できない" do
         @user.last_name_ruby = nil
         @user.valid?
         expect(@user.errors.full_messages).to include("Last name ruby can't be blank")
       end
+
+      it "first_name_rubyがカタカナ以外の入力だと登録できない" do
+        @user.first_name_ruby = "花子"
+        @user.valid?
+        expect(@user.errors.full_messages).to include("First name ruby is invalid")
+      end
+
+
 
       it "birthdayが空だと登録できない" do
         @user.birthday = nil
