@@ -7,7 +7,7 @@ class Item < ApplicationRecord
   belongs_to :status
   belongs_to :shipping
   belongs_to :area
-  belongs_to :day
+  belongs_to :days
 
 
   with_options numericality: { other_than: 1 } do
