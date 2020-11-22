@@ -3,7 +3,7 @@ class ItemsController < ApplicationController
 
 
   def index
-    @item = Item.all.order("id DESC")
+    @item = Item.order("id DESC")
   end
 
   def new
