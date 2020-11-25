@@ -15,7 +15,7 @@
 
 ### Association
 - has_many :user_items
-- has_many :items, through: :user_items
+- has_many :items
 
 
 --- 
@@ -35,7 +35,7 @@
 
 ### Association
 - has_one :user_item
-- belongs_to :user, through: :user_items, dependent: :destroy
+- belongs_to :user, dependent: :destroy
 
 
 ---
@@ -49,11 +49,11 @@
 ### Association
 - belongs_to :user
 - belongs_to :item
-- has_one :delivery
+- has_one :order
 
 
 ---
-## deliveries
+## orders
 
 |Column|Type|Options|
 |------|----|-------|
