@@ -10,6 +10,11 @@ RSpec.describe ItemOrder, type: :model do
       it "postal_codeとmunicipalityとaddressとphone_numberが入力され、紐づくuser_idとitem_idが存在し、prefecture_idが１以外が選ばれ、tokenが存在していれば購入できる" do
         expect(@item_order).to be_valid
       end
+
+      it "建物名が入力sれなくても購入できる" do
+        @item_order.building_name = nil
+        expect(@item_order).to be_valid
+      end
     end
 
     context "購入が上手くいかない時" do
@@ -53,12 +58,6 @@ RSpec.describe ItemOrder, type: :model do
 
       it "postal_codeにハイフンが無ければ購入できない" do
         @item_order.postal_code = "1234567"
-        @item_order.valid?
-        expect(@item_order.errors.full_messages).to include("Postal code is invalid")
-      end
-
-      it "postal_codeが３桁ハイフン４桁の並びで無ければ購入できない" do
-        @item_order.postal_code = "1234-567"
         @item_order.valid?
         expect(@item_order.errors.full_messages).to include("Postal code is invalid")
       end
