@@ -6,7 +6,6 @@ class ItemsController < ApplicationController
 
   def index
     @item = Item.order("id DESC")
-    @user_item = UserItem.all
   end
 
   def new
@@ -23,9 +22,6 @@ class ItemsController < ApplicationController
   end
 
   def show 
-    @user_item = UserItem.all
-    @user_item_item_id = UserItem.select(:item_id)
-    @user_item_user_id = UserItem.select(:user_id)
   end
 
   def edit

@@ -4,7 +4,8 @@ class OrdersController < ApplicationController
   
   def index
     @item_order = ItemOrder.new
-    if user_signed_in? && @item.user_item != nil
+    if current_user.id == @item.user_id || @item.user_item != nil # この式が購入済みである事を示しています。
+      # 出品者が自分の出品した商品の購入ページに直接飛べなくなる実装を忘れていたので追加しました。user_signed_in?は削除しました。
       redirect_to root_path
     end
   end
@@ -16,7 +17,6 @@ class OrdersController < ApplicationController
       @item_order.save
       redirect_to root_path
     else
-      @item = Item.find(params[:item_id])
       render :index
     end
   end
