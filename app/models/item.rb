@@ -1,7 +1,8 @@
 class Item < ApplicationRecord
   
   has_one :user_item
-  belongs_to :user, dependent: :destroy
+  belongs_to :user
+  # , dependent: :destroy
   has_one_attached :image
   extend ActiveHash::Associations::ActiveRecordExtensions
   belongs_to :category
