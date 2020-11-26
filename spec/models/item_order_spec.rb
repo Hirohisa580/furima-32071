@@ -11,7 +11,7 @@ RSpec.describe ItemOrder, type: :model do
         expect(@item_order).to be_valid
       end
 
-      it "建物名が入力sれなくても購入できる" do
+      it "建物名が入力されていなくても購入できる" do
         @item_order.building_name = nil
         expect(@item_order).to be_valid
       end
