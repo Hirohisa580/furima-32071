@@ -55,7 +55,9 @@ class ItemsController < ApplicationController
   end
 
   def move_to_index
-      unless @item.user.id == current_user.id
+      user_item_all = UserItem.all
+      item_id_arry = user_item_all.pluck(:item_id)
+      if @item.user.id != current_user.id || item_id_arry.include?(@item.id)
         redirect_to root_path
       end
   end
